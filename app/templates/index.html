@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>URL Shortener</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>URL Shortener</h1>
+    <p id="session-status">Not signed in</p>
+  </header>
+
+  <main>
+    <section id="auth-section">
+      <form id="auth-form">
+        <input type="email" id="email" placeholder="email" required>
+        <input type="password" id="password" placeholder="password (min 8 chars)" required>
+        <button type="submit" data-action="login">Log in</button>
+        <button type="submit" data-action="register">Register</button>
+      </form>
+      <p id="auth-message"></p>
+    </section>
+
+    <section id="dashboard-section" hidden>
+      <form id="create-link-form">
+        <input type="url" id="long-url" placeholder="https://example.com/very/long/path" required>
+        <input type="text" id="custom-code" placeholder="custom code (optional)">
+        <button type="submit">Shorten</button>
+      </form>
+      <p id="create-message"></p>
+
+      <table id="links-table">
+        <thead>
+          <tr>
+            <th>Short URL</th>
+            <th>Destination</th>
+            <th>Clicks</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="links-body"></tbody>
+      </table>
+
+      <section id="analytics-panel" hidden>
+        <h2>Analytics</h2>
+        <pre id="analytics-output"></pre>
+      </section>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
